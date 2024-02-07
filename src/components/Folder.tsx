@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Item } from "../data/folderData";
 
 const Folder = ({ explorer }: { explorer: Item }) => {
-  const [expand, setExpand] = useState(false);
+  const [show, setShow] = useState(false);
   if (explorer.isFolder) {
     return (
       <div style={{ marginTop: 5 }}>
-        <div className="folder" onClick={() => setExpand(!expand)}>
-          <span>📁 {explorer.name}</span>
+        <div className="folder" onClick={() => setShow(!show)}>
+          <span>📂{explorer.name}</span>
         </div>
-        <div style={{ display: expand ? "block" : "none", paddingLeft: 25 }}>
+        <div style={{ display: show ? "block" : "none" }}>
           {explorer.items.map((item) => {
-            return <Folder explorer={item} key={item.id} />;
+            return <Folder explorer={item} />;
           })}
         </div>
       </div>
